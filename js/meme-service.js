@@ -1,8 +1,10 @@
 'use strict';
-var gKeyewords = { 'happy': 12, 'funny': 15, 'angry': 10, 'sad': 2, cute: 4, 'animal': 6 };
+var gKeyewords = { happy: 12, funny: 15, angry: 12, sad: 2, cute: 15, animal: 20 };
 const KEY = 'canvas';
 const KEYARR = 'arrCanvas';
 var gMemes = [];
+var gFilterBy = '';
+
 var gImgs = [
     { id: 1, url: 'imgs/1.jpg', keywords: ['angry'] },
     { id: 2, url: 'imgs/2.jpg', keywords: ['happy', 'cute', 'animal'] },
@@ -67,7 +69,21 @@ function addLine() {
 }
 
 function filterImgs(txt) {
-
+    if (txt === 'funny') {
+        if (gKeyewords.funny > 30) return;
+        gKeyewords.funny++;
+    } else if (txt === 'angry') {
+        if (txt > 30) return;
+        gKeyewords.angry++;
+    } else if (txt === 'cute') {
+        if (gKeyewords.cute > 30) return;
+        gKeyewords.cute++;
+    } else if (txt === 'animal') {
+        if (gKeyewords.animal > 30) return;
+        gKeyewords.animal++;
+    }
+    gFilterBy = txt;
+    console.log(gFilterBy);
 }
 
 function removeLine() {
@@ -77,7 +93,13 @@ function removeLine() {
 }
 
 function getImgs() {
-    return gImgs;
+    if (!gFilterBy) return gImgs
+    var imgs = gImgs.filter(img => {
+        return img.keywords.includes(gFilterBy)
+    })
+    console.log('imgs', imgs);
+
+    return imgs;
 }
 
 function getKeyWords() {
@@ -85,7 +107,7 @@ function getKeyWords() {
 }
 
 function getImgById(imgId) {
-    var img = gImgs.find(function(img) {
+    var img = gImgs.find(img => {
         return imgId === img.id;
     })
     return img;
@@ -176,4 +198,21 @@ function saveMeme() {
     let currMeme = loadFromStorage(KEY)
     gMemes.push(currMeme);
     saveToStorage(KEYARR, gMemes)
+}
+
+function filterByKeyWord(keyword) {
+    if (keyword === 'funny') {
+        if (gKeyewords.funny > 30) return;
+        gKeyewords.funny++;
+    } else if (keyword === 'angry') {
+        if (gKeyewords.angry > 30) return;
+        gKeyewords.angry++;
+    } else if (keyword === 'cute') {
+        if (gKeyewords.cute > 30) return;
+        gKeyewords.cute++;
+    } else if (keyword === 'animal') {
+        if (gKeyewords.animal > 30) return;
+        gKeyewords.animal++;
+    }
+    gFilterBy = keyword;
 }

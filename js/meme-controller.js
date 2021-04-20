@@ -11,10 +11,18 @@ function renderImgs() {
     document.querySelector('.gallery').innerHTML = strHtml.join('');
 }
 
-function renderSearchKeys() {
-    const keywords = getKeyWords()
-    const searchKeys = document.querySelector('.search-keys');
+function renderKeyWords() {
+    var keywords = getKeyWords()
+    var funny = document.querySelector('.funny');
+    var angry = document.querySelector('.angry');
+    var cute = document.querySelector('.cute');
+    var animal = document.querySelector('.animal');
+    funny.style.fontSize = keywords.funny + 'px';
+    angry.style.fontSize = keywords.angry + 'px';
+    cute.style.fontSize = keywords.cute + 'px';
+    animal.style.fontSize = keywords.animal + 'px';
 }
+
 
 function renderCanvas() {
     const meme = getMeme();
@@ -31,11 +39,13 @@ function oninit() {
     gCanvas = document.getElementById('img-canvas');
     gCtx = gCanvas.getContext('2d');
     renderImgs()
-    renderSearchKeys()
+    renderKeyWords()
 }
 
 function onFilterImgs(txt) {
     filterImgs(txt);
+    renderImgs()
+    renderKeyWords()
 }
 
 function onImgClick(id) {
@@ -123,4 +133,10 @@ function onMemes() {
 
 function onSave() {
     saveMeme()
+}
+
+function onFilterByKeyWord(elkeyword) {
+    filterByKeyWord(elkeyword.innerHTML);
+    renderImgs()
+    renderKeyWords()
 }

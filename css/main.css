@@ -66,12 +66,27 @@ footer {
     color: black;
 }
 
+.search-bar {
+    margin-bottom: 27px;
+    justify-content: center;
+}
+
+.keywords-container * {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
 .sep {
     width: 1px;
     height: 32px;
     background-color: #8a8a8a;
     margin-left: 15px;
     margin-right: 15px;
+}
+
+.search {
+    font-size: larger;
+    width: 100px;
 }
 
 

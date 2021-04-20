@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
-    <title>Home Page</title>
+    <title>MemeGen</title>
 </head>
 
 <body onload="oninit()">
@@ -24,7 +24,7 @@
         </div>
     </header>
     <div class="saved-memes" hidden>
-        <h1>adsfsddvsdvsssdvf</h1>
+        <h1>Working on it...</h1>
     </div>
     <div class="img-editor main-layout" hidden>
         <div class="editor-layout grid">
@@ -59,14 +59,20 @@
         </div>
     </div>
     <main class="main main-layout">
-        <section class="search-bar">
-            <input onchange="onFilterImgs(txt)" placeholder="Search" list="search-keys">
+        <section class="search-bar flex">
+            <input class="search" oninput="onFilterImgs(this.value)" placeholder="Search" list="search-keys">
             <datalist id="search-keys">
                 <option value="funny">
                 <option value="happy">
                 <option value="cute">
                 <option value="animal">
               </datalist>
+            <div class="keywords-container flex">
+                <div class="funny" onclick="onFilterByKeyWord(this)">funny</div>
+                <div class="angry" onclick="onFilterByKeyWord(this)">angry</div>
+                <div class="cute" onclick="onFilterByKeyWord(this)">cute</div>
+                <div class="animal" onclick="onFilterByKeyWord(this)">animal</div>
+            </div>
         </section>
         <div class="gallery grid">
         </div>
