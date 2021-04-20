@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Home Page</title>
+</head>
+
+<body onload="oninit()">
+    <header class="main-header">
+        <div class="inner-header main-layout flex space-between align-center">
+            <img class="logo" src="imgs/LOGO.png" alt="">
+            <ul class="main-nav flex clean-list align-center">
+                <li onclick="onGallery()">Gallery</li>
+                <li class="sep"></li>
+                <li onclick="onMemes()">Memes</li>
+                <li class="sep"></li>
+                <li onclick="onAbout()">About</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="saved-memes" hidden>
+        <h1>adsfsddvsdvsssdvf</h1>
+    </div>
+    <div class="img-editor main-layout" hidden>
+        <div class="editor-layout grid">
+            <canvas id="img-canvas" height="540px" width="540px"></canvas>
+            <div class="tools grid">
+                <input class="textLine" onkeyup="onUpdateText(this.value)" type="text">
+                <img class="tools-icon" onclick="onSwitchLine()" src="icons/up-and-down-opposite-double-arrows-side-by-side.png">
+                <img class="tools-icon" onclick="onAddLine()" src="icons/add.png">
+                <img class="tools-icon" onclick="onRemoveLine()" src="icons/trash.png">
+                <img class="posUp tools-icon" onclick="onChangePos(this.classList)" src="icons/posUp.png">
+                <img class="posDown tools-icon" onclick="onChangePos(this.classList)" src="icons/posDown.png">
+                <select class="tools-icon" onchange="onSetFont(this.value)">
+                    <option value="Ariel">Ariel</option>
+                    <option value="fantasy">Fantacy</option>
+                    <option value="IMPACT">IMPACT</option>
+                </select>
+                <img class="sizeUp tools-icon" onclick="onSizeChange(this.classList)" src="icons/increase font - icon.png">
+                <img class="sizeDown tools-icon" onclick="onSizeChange(this.classList)" src="icons/decrease font - icon.png">
+                <input class="tools-icon" onchange="onSetColor(this.value)" type="color">
+                <img class="alignLeft tools-icon" onclick="onAlignChange(this.classList)" src="icons/align-to-left.png">
+                <img class="alignCenter tools-icon" onclick="onAlignChange(this.classList)" src="icons/center-text-alignment.png">
+                <img class="alignRight tools-icon" onclick="onAlignChange(this.classList)" src="icons/align-to-right.png">
+                <img src="" alt="">
+                <a href="#" onclick="onDownloadCanvas(this)" download=""><img class="tools-icon" src="icons/download.png" alt=""></a>
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="publish" type="submit"><img onclick="onSave()" class="tools-icon" type="submit" src="icons/upload.png">
+                    </button>
+                    <div class="share-container"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <main class="main main-layout">
+        <section class="search-bar">
+            <input onchange="onFilterImgs(txt)" placeholder="Search" list="search-keys">
+            <datalist id="search-keys">
+                <option value="funny">
+                <option value="happy">
+                <option value="cute">
+                <option value="animal">
+              </datalist>
+        </section>
+        <div class="gallery grid">
+        </div>
+    </main>
+    <footer class="flex column align-center ">
+        <img class="logo" src="imgs/LOGO.png">
+        <small>allrights reserved2021</small>
+    </footer>
+    <script src="js/storage-service.js"></script>
+    <script src="js/upload-service.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/meme-controller.js"></script>
+</body>
+
+</html>
