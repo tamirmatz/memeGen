@@ -137,6 +137,6 @@ function onSave() {
 
 function onFilterByKeyWord(elkeyword) {
     filterByKeyWord(elkeyword.innerHTML);
-    renderImgs()
-    renderKeyWords()
+    renderImgs();
+    renderKeyWords();
 }
