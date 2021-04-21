@@ -13,20 +13,23 @@ footer {
 }
 
 .gallery {
-    grid-template-columns: repeat(3, 353px);
+    justify-content: center;
+    grid-template-columns: repeat(3, 300px);
     gap: 30px;
 }
 
 .saved-memes {
     display: grid;
-    grid-template-columns: repeat(3, 353px);
-    gap: 30px;
     display: none;
 }
 
+.saved-memes img {
+    margin: 30px;
+}
+
 .preview {
-    height: 278px;
-    width: 353px;
+    height: 300px;
+    width: 300px;
     cursor: pointer;
     object-fit: cover;
 }
@@ -102,6 +105,12 @@ footer {
     color: blanchedalmond;
     display: none;
     cursor: pointer;
+}
+
+.delete-btn {
+    position: absolute;
+    cursor: pointer;
+    z-index: -1;
 }
 
 
@@ -192,6 +201,9 @@ footer {
         grid-template-columns: repeat(2, 160px);
         gap: 15px;
         display: none;
+    }
+    .saved-memes img {
+        margin: 15px;
     }
     .preview {
         height: 160px;

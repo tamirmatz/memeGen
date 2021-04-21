@@ -33,11 +33,13 @@ function renderCanvas() {
 
 function renderSavedMemes() {
     let memes = loadFromStorage(KEYARR);
-    if (!memes) {
+    if (!memes || memes.length === 0) {
         document.querySelector('.saved-memes').innerHTML = '<h1>No Memes For Display</h1>'
     } else {
         const strHtml = memes.map(meme => {
-            return `<img onclick="onMemeClick(${meme.id})" class="preview" src="${meme.url}"></img>`
+            return `
+             <img onclick="onMemeClick('${meme.id}')" class="preview" src="${meme.url}"><span class="delete-btn" onclick="onDeleteMeme('${meme.id}')">X</span></img>
+             `
         })
         console.log(memes);
 
@@ -48,6 +50,8 @@ function renderSavedMemes() {
 function oninit() {
     gCanvas = document.getElementById('img-canvas');
     gCtx = gCanvas.getContext('2d');
+    const elSavedMemes = document.querySelector('.saved-memes')
+    elSavedMemes.style.display = 'none';
     renderSavedMemes();
     renderImgs();
     renderKeyWords();
@@ -171,4 +175,9 @@ function onFilterByKeyWord(elkeyword) {
 
 function onToggleMenu() {
     document.body.classList.toggle('menu-open');
+}
+
+function onDeleteMeme(memeId) {
+    deleteMeme(memeId);
+    renderSavedMemes();
 }

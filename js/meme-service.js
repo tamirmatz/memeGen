@@ -4,7 +4,6 @@ const KEY = 'canvas';
 const KEYARR = 'arrCanvas';
 var gMemes = [];
 var gProperties = []
-var gMemeId = 100;
 var gFilterBy = '';
 
 var gImgs = [
@@ -123,6 +122,20 @@ function getMemeById(memeId) {
     return meme;
 }
 
+function deleteMeme(memeId) {
+    console.log('memeId', memeId);
+
+    let memes = loadFromStorage(KEYARR);
+    var memeIdx = memes.findIndex(meme => {
+        return memeId === meme.id;
+    })
+    memes.splice(memeIdx, 1);
+    saveToStorage(KEYARR, memes)
+
+
+    // gMemes.splice(memeId, 1)
+}
+
 function drawImg(img) {
     const newImg = new Image();
     newImg.src = img.url;
@@ -214,13 +227,12 @@ function setColor(color) {
 }
 
 function saveMeme() {
-    gMemeId++;
     var value = loadFromStorage(KEYARR)
     if (!value) gMemes = [];
     else gMemes = loadFromStorage(KEYARR)
     console.log('gMemes', gMemes);
 
-    var currCanvas = { url: gCanvas.toDataURL(`image/jpeg`), id: gMemeId, properties: gMeme }
+    var currCanvas = { url: gCanvas.toDataURL(`image/jpeg`), id: makeId(), properties: gMeme }
     gMemes.push(currCanvas);
     saveToStorage(KEYARR, gMemes)
     console.log('gMemes', gMemes);
