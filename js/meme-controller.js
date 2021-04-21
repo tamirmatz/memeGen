@@ -41,8 +41,6 @@ function renderSavedMemes() {
              <img onclick="onMemeClick('${meme.id}')" class="preview" src="${meme.url}"><span class="delete-btn" onclick="onDeleteMeme('${meme.id}')">X</span></img>
              `
         })
-        console.log(memes);
-
         document.querySelector('.saved-memes').innerHTML = strHtml.join('')
     }
 }
@@ -67,12 +65,12 @@ function onImgClick(id) {
     const elSavedMemes = document.querySelector('.saved-memes')
     const elEditor = document.querySelector('.img-editor');
     const elMain = document.querySelector('.main');
+    const elAbout = document.querySelector('.about');
+    elAbout.hidden = true;
     elMain.hidden = true;
     elEditor.hidden = false;
     elSavedMemes.style.display = 'none';
     let img = getImgById(id);
-    console.log('img', img);
-
     updateMeme(id);
     drawImg(img);
 }
@@ -80,6 +78,8 @@ function onImgClick(id) {
 function onMemeClick(memeId) {
     const elSavedMemes = document.querySelector('.saved-memes');
     const elEditor = document.querySelector('.img-editor');
+    const elAbout = document.querySelector('.about');
+    elAbout.hidden = true;
     elEditor.hidden = false;
     elSavedMemes.style.display = 'none';
     let meme = getMemeById(memeId)
@@ -93,9 +93,12 @@ function onGallery() {
     const elSavedMemes = document.querySelector('.saved-memes')
     const elEditor = document.querySelector('.img-editor');
     const elMain = document.querySelector('.main');
+    const elAbout = document.querySelector('.about');
     elMain.hidden = false;
     elEditor.hidden = true;
     elSavedMemes.style.display = 'none';
+    elAbout.hidden = true;
+
 }
 
 function onUpdateText(txt) {
@@ -157,6 +160,8 @@ function onMemes() {
     const elEditor = document.querySelector('.img-editor');
     const elMain = document.querySelector('.main');
     let elSavedMemes = document.querySelector('.saved-memes');
+    const elAbout = document.querySelector('.about');
+    elAbout.hidden = true;
     elMain.hidden = true;
     elEditor.hidden = true;
     elSavedMemes.style.display = 'block';
@@ -180,4 +185,15 @@ function onToggleMenu() {
 function onDeleteMeme(memeId) {
     deleteMeme(memeId);
     renderSavedMemes();
+}
+
+function onAbout() {
+    const elSavedMemes = document.querySelector('.saved-memes')
+    const elEditor = document.querySelector('.img-editor');
+    const elMain = document.querySelector('.main');
+    const elAbout = document.querySelector('.about');
+    elMain.hidden = true;
+    elEditor.hidden = true;
+    elSavedMemes.style.display = 'none';
+    elAbout.hidden = false;
 }

@@ -123,17 +123,12 @@ function getMemeById(memeId) {
 }
 
 function deleteMeme(memeId) {
-    console.log('memeId', memeId);
-
     let memes = loadFromStorage(KEYARR);
     var memeIdx = memes.findIndex(meme => {
         return memeId === meme.id;
     })
     memes.splice(memeIdx, 1);
-    saveToStorage(KEYARR, memes)
-
-
-    // gMemes.splice(memeId, 1)
+    saveToStorage(KEYARR, memes);
 }
 
 function drawImg(img) {
@@ -230,12 +225,9 @@ function saveMeme() {
     var value = loadFromStorage(KEYARR)
     if (!value) gMemes = [];
     else gMemes = loadFromStorage(KEYARR)
-    console.log('gMemes', gMemes);
-
     var currCanvas = { url: gCanvas.toDataURL(`image/jpeg`), id: makeId(), properties: gMeme }
     gMemes.push(currCanvas);
     saveToStorage(KEYARR, gMemes)
-    console.log('gMemes', gMemes);
 }
 
 function filterByKeyWord(keyword) {
