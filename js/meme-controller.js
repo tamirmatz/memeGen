@@ -115,8 +115,10 @@ function onSetColor(color) {
 }
 
 function onDownloadCanvas(elLink) {
-    const data = gCanvas.toDataURL();
-    elLink.href = data;
+    var imgContent = gCanvas.toDataURL('imgs')
+    elLink.href = imgContent;
+    // const data = gCanvas.toDataURL();
+    // elLink.href = data;
     elLink.download = 'my-meme.jpg';
 }
 
@@ -124,8 +126,6 @@ function onMemes() {
     const elEditor = document.querySelector('.img-editor');
     const elMain = document.querySelector('.main');
     let elSavedMemes = document.querySelector('.saved-memes');
-
-    console.log('elSavesMemes', elSavedMemes);
     elMain.hidden = true;
     elEditor.hidden = true;
     elSavedMemes.hidden = false;

@@ -23,7 +23,7 @@ var gImgs = [
     { id: 15, url: 'imgs/15.jpg', keywords: ['funny'] },
     { id: 16, url: 'imgs/16.jpg', keywords: ['funny', 'happy'] },
     { id: 17, url: 'imgs/17.jpg', keywords: ['angry'] },
-    { id: 18, url: 'imgs/18.jpg', keywords: ['cute', 'funny'] },
+    { id: 18, url: 'imgs/18.jpg', keywords: ['cute', 'funny'] }
 ]
 
 var gMeme = {
@@ -83,7 +83,6 @@ function filterImgs(txt) {
         gKeyewords.animal++;
     }
     gFilterBy = txt;
-    console.log(gFilterBy);
 }
 
 function removeLine() {
@@ -97,7 +96,6 @@ function getImgs() {
     var imgs = gImgs.filter(img => {
         return img.keywords.includes(gFilterBy)
     })
-    console.log('imgs', imgs);
 
     return imgs;
 }
