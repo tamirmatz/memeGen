@@ -3,6 +3,7 @@ var gKeyewords = { happy: 12, funny: 15, angry: 12, sad: 2, cute: 15, animal: 20
 const KEY = 'canvas';
 const KEYARR = 'arrCanvas';
 var gMemes = [];
+var gMemeId = 100;
 var gFilterBy = '';
 
 var gImgs = [
@@ -192,10 +193,16 @@ function setColor(color) {
 }
 
 function saveMeme() {
-    saveToStorage(KEY, gMeme);
-    let currMeme = loadFromStorage(KEY)
-    gMemes.push(currMeme);
+    gMemeId++;
+    var value = loadFromStorage(KEYARR)
+    if (!value) gMemes = [];
+    else gMemes = loadFromStorage(KEYARR)
+    console.log('gMemes', gMemes);
+
+    var currCanvas = { url: gCanvas.toDataURL(`image/jpeg`), id: gMemeId }
+    gMemes.push(currCanvas);
     saveToStorage(KEYARR, gMemes)
+    console.log('gMemes', gMemes);
 }
 
 function filterByKeyWord(keyword) {

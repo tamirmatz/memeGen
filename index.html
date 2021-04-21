@@ -10,6 +10,7 @@
 </head>
 
 <body onload="oninit()">
+    <div class="main-screen" onclick="onToggleMenu()"></div>
     <header class="main-header">
         <div class="inner-header main-layout flex space-between align-center">
             <img class="logo" src="imgs/LOGO.png" alt="">
@@ -21,10 +22,13 @@
                 <li onclick="onAbout()">About</a>
                 </li>
             </ul>
+            <div class="btn-menu" onclick="onToggleMenu()">☰</div>
+
         </div>
     </header>
-    <div class="saved-memes" hidden>
-        <h1>Working on it...</h1>
+    <div class="saved-memes-container main-layout grid">
+        <div class="saved-memes" hidden>
+        </div>
     </div>
     <div class="img-editor main-layout" hidden>
         <div class="editor-layout grid">
@@ -47,11 +51,11 @@
                 <img class="alignLeft tools-icon" onclick="onAlignChange(this.classList)" src="icons/align-to-left.png">
                 <img class="alignCenter tools-icon" onclick="onAlignChange(this.classList)" src="icons/center-text-alignment.png">
                 <img class="alignRight tools-icon" onclick="onAlignChange(this.classList)" src="icons/align-to-right.png">
-                <img src="" alt="">
                 <a href="#" onclick="onDownloadCanvas(this)" download=""><img class="tools-icon" src="icons/download.png" alt=""></a>
+                <img onclick="onSave()" class="tools-icon" src="icons/save.png">
                 <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                     <input name="img" id="imgData" type="hidden" />
-                    <button class="publish" type="submit"><img onclick="onSave()" class="tools-icon" type="submit" src="icons/upload.png">
+                    <button class="publish" type="submit"><img class="tools-icon" type="submit" src="icons/upload.png">
                     </button>
                     <div class="share-container"></div>
                 </form>

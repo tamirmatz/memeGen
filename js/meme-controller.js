@@ -33,13 +33,24 @@ function renderCanvas() {
 
 function renderSavedMemes() {
     let memes = loadFromStorage(KEYARR);
+    if (!memes) {
+        document.querySelector('.saved-memes').innerHTML = '<h1>No Memes For Display</h1>'
+    } else {
+        const strHtml = memes.map(meme => {
+            return `<img onclick="onImgClick(${meme.id})" class="preview" src="${meme.url}"></img>`
+        })
+        console.log(memes);
+
+        document.querySelector('.saved-memes').innerHTML = strHtml.join('')
+    }
 }
 
 function oninit() {
     gCanvas = document.getElementById('img-canvas');
     gCtx = gCanvas.getContext('2d');
-    renderImgs()
-    renderKeyWords()
+    renderSavedMemes();
+    renderImgs();
+    renderKeyWords();
 }
 
 function onFilterImgs(txt) {
@@ -54,7 +65,7 @@ function onImgClick(id) {
     const elMain = document.querySelector('.main');
     elMain.hidden = true;
     elEditor.hidden = false;
-    elSavedMemes.hidden = true;
+    elSavedMemes.style.display = 'none';
     let img = getImgById(id);
     updateMeme(id);
     drawImg(img);
@@ -66,7 +77,7 @@ function onGallery() {
     const elMain = document.querySelector('.main');
     elMain.hidden = false;
     elEditor.hidden = true;
-    elSavedMemes.hidden = true;
+    elSavedMemes.style.display = 'none';
 }
 
 function onUpdateText(txt) {
@@ -116,6 +127,8 @@ function onSetColor(color) {
 
 function onDownloadCanvas(elLink) {
     var imgContent = gCanvas.toDataURL('imgs')
+    console.log('imgContent', imgContent);
+
     elLink.href = imgContent;
     // const data = gCanvas.toDataURL();
     // elLink.href = data;
@@ -128,7 +141,8 @@ function onMemes() {
     let elSavedMemes = document.querySelector('.saved-memes');
     elMain.hidden = true;
     elEditor.hidden = true;
-    elSavedMemes.hidden = false;
+    elSavedMemes.style.display = 'block';
+    renderSavedMemes()
 }
 
 function onSave() {
@@ -139,4 +153,8 @@ function onFilterByKeyWord(elkeyword) {
     filterByKeyWord(elkeyword.innerHTML);
     renderImgs();
     renderKeyWords();
+}
+
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open');
 }
