@@ -31,6 +31,13 @@ function renderCanvas() {
     drawText(meme);
 }
 
+function renderCanvasBeforeSave() {
+    const meme = getMeme();
+    const img = getImgById(meme.selectedImgId)
+    drawImg(img);
+    drawTextBeforeSave(meme);
+}
+
 function renderSavedMemes() {
     let memes = loadFromStorage(KEYARR);
     if (!memes || memes.length === 0) {
@@ -82,11 +89,10 @@ function onMemeClick(memeId) {
     elAbout.hidden = true;
     elEditor.hidden = false;
     elSavedMemes.style.display = 'none';
-    let meme = getMemeById(memeId)
-    let img = getImgById(meme.properties.selectedImgId)
-    updateMeme(meme.properties.selectedImgId);
-    drawSavedImg(img, meme)
-
+    let meme = getMemeById(memeId);
+    let img = getImgById(meme.properties.selectedImgId);
+    updateSavedMeme(meme);
+    drawSavedImg(img, meme);
 }
 
 function onGallery() {
@@ -147,6 +153,7 @@ function onSetColor(color) {
 }
 
 function onDownloadCanvas(elLink) {
+    renderCanvasBeforeSave()
     var imgContent = gCanvas.toDataURL('imgs')
     console.log('imgContent', imgContent);
 
@@ -165,11 +172,12 @@ function onMemes() {
     elMain.hidden = true;
     elEditor.hidden = true;
     elSavedMemes.style.display = 'block';
-    renderSavedMemes()
+    renderSavedMemes();
 }
 
 function onSave() {
-    saveMeme()
+    renderCanvasBeforeSave();
+    saveMeme();
 }
 
 function onFilterByKeyWord(elkeyword) {

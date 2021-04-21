@@ -158,6 +158,25 @@ function drawText(meme) {
     let idx = 0;
     lines.map(line => {
         gCtx.lineWidth = 2;
+        if (idx === gMeme.selectedLineIdx) {
+            gCtx.strokeStyle = 'blue';
+        } else {
+            gCtx.strokeStyle = meme.lines[idx].strokeColor;
+        }
+        gCtx.fillStyle = meme.lines[idx].color;
+        gCtx.font = `${meme.lines[idx].size}px ${meme.lines[idx].font}`;
+        gCtx.textAlign = meme.lines[idx].align;
+        gCtx.fillText(meme.lines[idx].txt, meme.lines[idx].pos.x, meme.lines[idx].pos.y)
+        gCtx.strokeText(meme.lines[idx].txt, meme.lines[idx].pos.x, meme.lines[idx].pos.y)
+        idx++;
+    })
+}
+
+function drawTextBeforeSave(meme) {
+    const lines = meme.lines;
+    let idx = 0;
+    lines.map(line => {
+        gCtx.lineWidth = 2;
         gCtx.strokeStyle = meme.lines[idx].strokeColor;
         gCtx.fillStyle = meme.lines[idx].color;
         gCtx.font = `${meme.lines[idx].size}px ${meme.lines[idx].font}`;
@@ -172,11 +191,15 @@ function updateMeme(id) {
     gMeme.selectedImgId = id;
 }
 
+function updateSavedMeme(meme) {
+    gMeme.selectedImgId = meme.properties.selectedImgId;
+    gMeme.selectedLineIdx = meme.properties.selectedLineIdx;
+    gMeme.lines = meme.properties.lines;
+}
+
 function getMeme() {
     return gMeme;
 }
-
-
 
 function updateText(txt) {
     if (!gMeme.lines.length) return
@@ -222,6 +245,7 @@ function setColor(color) {
 }
 
 function saveMeme() {
+
     var value = loadFromStorage(KEYARR)
     if (!value) gMemes = [];
     else gMemes = loadFromStorage(KEYARR)
