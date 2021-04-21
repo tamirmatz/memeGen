@@ -37,7 +37,7 @@ function renderSavedMemes() {
         document.querySelector('.saved-memes').innerHTML = '<h1>No Memes For Display</h1>'
     } else {
         const strHtml = memes.map(meme => {
-            return `<img onclick="onImgClick(${meme.id})" class="preview" src="${meme.url}"></img>`
+            return `<img onclick="onMemeClick(${meme.id})" class="preview" src="${meme.url}"></img>`
         })
         console.log(memes);
 
@@ -67,8 +67,22 @@ function onImgClick(id) {
     elEditor.hidden = false;
     elSavedMemes.style.display = 'none';
     let img = getImgById(id);
+    console.log('img', img);
+
     updateMeme(id);
     drawImg(img);
+}
+
+function onMemeClick(memeId) {
+    const elSavedMemes = document.querySelector('.saved-memes');
+    const elEditor = document.querySelector('.img-editor');
+    elEditor.hidden = false;
+    elSavedMemes.style.display = 'none';
+    let meme = getMemeById(memeId)
+    let img = getImgById(meme.properties.selectedImgId)
+    updateMeme(meme.properties.selectedImgId);
+    drawSavedImg(img, meme)
+
 }
 
 function onGallery() {

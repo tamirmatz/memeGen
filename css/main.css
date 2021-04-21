@@ -188,8 +188,8 @@ footer {
         gap: 15px;
     }
     .saved-memes {
-        grid-template-columns: repeat(2, 160px);
         justify-content: center;
+        grid-template-columns: repeat(2, 160px);
         gap: 15px;
         display: none;
     }
@@ -221,7 +221,7 @@ footer {
         top: 0;
         height: 100vh;
         width: 50%;
-        background-color: rgb(179, 116, 0);
+        background-color: #ff7f00;
         /* border-left: 1px solid black; */
         box-shadow: 9px 10px 23px 0px rgba(0, 0, 0, 0.92);
         transform: translateX(100%);

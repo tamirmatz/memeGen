@@ -3,6 +3,7 @@ var gKeyewords = { happy: 12, funny: 15, angry: 12, sad: 2, cute: 15, animal: 20
 const KEY = 'canvas';
 const KEYARR = 'arrCanvas';
 var gMemes = [];
+var gProperties = []
 var gMemeId = 100;
 var gFilterBy = '';
 
@@ -112,6 +113,16 @@ function getImgById(imgId) {
     return img;
 }
 
+function getMemeById(memeId) {
+    let memes = loadFromStorage(KEYARR);
+
+    var meme = memes.find(meme => {
+
+        return memeId === meme.id;
+    })
+    return meme;
+}
+
 function drawImg(img) {
     const newImg = new Image();
     newImg.src = img.url;
@@ -121,6 +132,16 @@ function drawImg(img) {
     newImg.onload = () => {
         gCtx.drawImage(newImg, 0, 0, gCanvas.width, gCanvas.height);
         drawText(gMeme)
+    }
+}
+
+function drawSavedImg(img, meme) {
+    const newImg = new Image();
+    newImg.src = img.url;
+
+    newImg.onload = () => {
+        gCtx.drawImage(newImg, 0, 0, gCanvas.width, gCanvas.height);
+        drawText(meme.properties)
     }
 }
 
@@ -199,7 +220,7 @@ function saveMeme() {
     else gMemes = loadFromStorage(KEYARR)
     console.log('gMemes', gMemes);
 
-    var currCanvas = { url: gCanvas.toDataURL(`image/jpeg`), id: gMemeId }
+    var currCanvas = { url: gCanvas.toDataURL(`image/jpeg`), id: gMemeId, properties: gMeme }
     gMemes.push(currCanvas);
     saveToStorage(KEYARR, gMemes)
     console.log('gMemes', gMemes);
