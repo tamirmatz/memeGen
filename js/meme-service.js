@@ -38,6 +38,7 @@ var gMeme = {
         color: 'white',
         pos: { x: 260, y: 35 },
         font: 'IMPACT',
+        isDragging: false
     }, {
         txt: 'shit',
         size: 40,
@@ -46,6 +47,7 @@ var gMeme = {
         color: 'white',
         pos: { x: 260, y: 530 },
         font: 'IMPACT',
+        isDragging: false
     }]
 }
 
@@ -58,6 +60,7 @@ function addLine() {
         color: 'white',
         pos: { x: 260, y: 280 },
         font: 'IMPACT',
+        isDragging: false
     }
 
     if (!gMeme.lines.length) line.pos.y = 35;
@@ -269,4 +272,8 @@ function filterByKeyWord(keyword) {
         gKeyewords.animal++;
     }
     gFilterBy = keyword;
+}
+
+function isDragging() {
+    gMeme.lines[gMeme.selectedLineIdx].isDragging = true;
 }

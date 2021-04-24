@@ -26,14 +26,13 @@
 
         </div>
     </header>
-    <div class="about" hidden>
+    <div class="about main-layout" hidden>
         <h1>A Little About Us...</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore eum fugit quae, nam beatae quo, ipsam, neque pariatur ut molestias obcaecati id? Ratione doloremque rem eum consectetur dicta enim?Lorem ipsum dolor sit amet consectetur adipisicing
             elit. Ea inventore eum fugit quae, nam beatae quo, ipsam, neque pariatur ut molestias obcaecati id? Ratione doloremque rem eum consectetur dicta enim?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore eum fugit quae, nam
             beatae quo, ipsam, neque pariatur ut molestias obcaecati id? Ratione doloremque rem eum consectetur dicta enim?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore eum fugit quae, nam beatae quo, ipsam, neque pariatur ut molestias
             obcaecati id? Ratione doloremque rem eum consectetur dicta enim?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore eum fugit quae, nam beatae quo, ipsam, neque pariatur ut molestias obcaecati id? Ratione doloremque rem eum
-            consectetur dicta enim?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea inventore eum fugit quae, nam beatae quo, ipsam, neque pariatur ut molestias obcaecati id? Ratione doloremque rem eum consectetur dicta enim?Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Ea inventore eum fugit quae, nam beatae quo, ipsam, neque pariatur ut molestias obcaecati id? Ratione doloremque rem eum consectetur dicta enim?</p>
+            consectetur dicta enim?</p>
     </div>
     <div class="saved-memes-container main-layout grid">
         <div class="saved-memes main-layout grid" hidden>
@@ -62,6 +61,7 @@
                 <img class="alignRight tools-icon" onclick="onAlignChange(this.classList)" src="icons/align-to-right.png">
                 <a href="#" onclick="onDownloadCanvas(this)" download=""><img class="tools-icon" src="icons/download.png" alt=""></a>
                 <img onclick="onSave()" class="tools-icon" src="icons/save.png">
+
                 <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                     <input name="img" id="imgData" type="hidden" />
                     <button class="publish" type="submit"><img class="tools-icon" type="submit" src="icons/upload.png">
@@ -71,6 +71,22 @@
             </div>
         </div>
     </div>
+    <div class="modal">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Congrats!</h2>
+            </div>
+            <div class="modal-body">
+                <p>Your meme saved successfully to the memes tab </p>
+            </div>
+            <div class="modal-footer">
+                <h3 class="close-modal">Continue memeing...</h3>
+            </div>
+        </div>
+
+    </div>
+
     <main class="main main-layout">
         <section class="search-bar flex">
             <input class="search" oninput="onFilterImgs(this.value)" placeholder="Search" list="search-keys">
@@ -97,6 +113,7 @@
     <script src="js/storage-service.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/util.js"></script>
+    <script src="js/meme-drag&drop.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/meme-controller.js"></script>
 </body>

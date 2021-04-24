@@ -2,6 +2,8 @@
 var gCanvas;
 var gCtx;
 var gText;
+let gStartPos;
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 function renderImgs() {
     const imgs = getImgs()
@@ -176,6 +178,20 @@ function onMemes() {
 }
 
 function onSave() {
+    var modal = document.querySelector('.modal');
+    var close = document.querySelector('.close-modal');
+    modal.style.display = "block";
+
+    close.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
     renderCanvasBeforeSave();
     saveMeme();
 }
